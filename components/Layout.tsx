@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Home, Gift, User, BarChart3, ShoppingBag } from 'lucide-react';
+import { Home, Gift, User, BarChart3, ShoppingBag, Bell } from 'lucide-react';
 import { LOGO_URL } from '../constants';
 import { useAuth } from '../context/AuthContext';
 
@@ -25,27 +25,26 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
             </span>
           </div>
           
-          {/* Somente exibe link de Gestão se for ADMIN e não estiver no dashboard */}
-          {isAdmin && !isDashboard && (
-            <Link 
-              to="/dashboard" 
-              className="text-[10px] font-bold uppercase tracking-wider bg-black text-white px-3 py-1.5 rounded-full flex items-center gap-1 shadow-md shadow-black/10"
-            >
-              <BarChart3 size={12} />
-              Gestão
-            </Link>
-          )}
+          <div className="flex items-center gap-3">
+            {/* Somente exibe link de Gestão se for ADMIN e não estiver no dashboard */}
+            {isAdmin && !isDashboard && (
+              <Link 
+                to="/dashboard" 
+                className="text-[10px] font-bold uppercase tracking-wider bg-black text-white px-3 py-1.5 rounded-full flex items-center gap-1 shadow-md shadow-black/10"
+              >
+                <BarChart3 size={12} />
+                Gestão
+              </Link>
+            )}
 
-          {/* Se estiver no dashboard, link para Perfil (Logout) */}
-          {isAdmin && isDashboard && (
-            <Link 
-              to="/perfil" 
-              className="text-[10px] font-bold uppercase tracking-wider bg-gray-100 text-gray-600 px-3 py-1.5 rounded-full flex items-center gap-1"
-            >
-              <User size={12} />
-              Sair
-            </Link>
-          )}
+            {/* Ícone de Notificação com Alerta Visual */}
+            {user && (
+              <Link to="/perfil/notificacoes" className="relative p-2 text-gray-400 hover:text-black transition-colors active:scale-90">
+                <Bell size={22} />
+                <span className="absolute top-2 right-2.5 w-2 h-2 bg-[#F2B705] border-2 border-white rounded-full"></span>
+              </Link>
+            )}
+          </div>
         </header>
       )}
 
@@ -54,18 +53,18 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
         {children}
       </main>
 
-      {/* Bottom Nav - Somente para usuários perfil 'user' */}
+      {/* Bottom Nav */}
       {!isAuth && user && !isAdmin && (
         <nav className="fixed bottom-0 w-full max-w-md bg-white border-t border-gray-100 px-6 py-3 flex justify-around items-center shadow-[0_-4px_10px_rgba(0,0,0,0.03)] z-40">
           <NavItem to="/" active={location.pathname === '/'} icon={<Home size={22} />} label="Início" />
           <NavItem to="/produtos" active={location.pathname === '/produtos'} icon={<ShoppingBag size={22} />} label="Produtos" />
           <NavItem to="/campanhas" active={location.pathname === '/campanhas'} icon={<Gift size={22} />} label="Campanhas" />
-          <NavItem to="/perfil" active={location.pathname === '/perfil'} icon={<User size={22} />} label="Perfil" />
+          <NavItem to="/perfil" active={location.pathname.startsWith('/perfil')} icon={<User size={22} />} label="Perfil" />
         </nav>
       )}
 
-      {/* Navegação Simplificada para Admin no Perfil */}
-      {!isAuth && isAdmin && location.pathname === '/perfil' && (
+      {/* Navegação Simplificada para Admin */}
+      {!isAuth && isAdmin && location.pathname.startsWith('/perfil') && (
         <nav className="fixed bottom-0 w-full max-w-md bg-white border-t border-gray-100 px-6 py-3 flex justify-around items-center z-40">
           <NavItem to="/dashboard" active={false} icon={<BarChart3 size={22} />} label="Dashboard" />
           <NavItem to="/perfil" active={true} icon={<User size={22} />} label="Perfil" />

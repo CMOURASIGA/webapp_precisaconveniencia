@@ -131,7 +131,7 @@ export const ProfileView: React.FC = () => {
             icon={<Bell size={18} />} 
             label="Notificações" 
             color="bg-yellow-50 text-yellow-600" 
-            onClick={() => {}}
+            onClick={() => navigate('/perfil/notificacoes')}
           />
           <ProfileListItem 
             icon={<ShieldCheck size={18} />} 

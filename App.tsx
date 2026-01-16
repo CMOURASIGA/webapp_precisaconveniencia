@@ -8,6 +8,7 @@ import { ProductsView } from './views/Products';
 import { ProfileView } from './views/Profile';
 import { PersonalDataView } from './views/PersonalData';
 import { SecurityView } from './views/Security';
+import { NotificationsView } from './views/Notifications';
 import { DashboardView } from './views/Dashboard';
 import { AuthView } from './views/Auth';
 import { AuthProvider, useAuth } from './context/AuthContext';
@@ -51,6 +52,9 @@ const App: React.FC = () => {
             } />
             <Route path="/perfil/seguranca" element={
               <ProtectedRoute><SecurityView /></ProtectedRoute>
+            } />
+            <Route path="/perfil/notificacoes" element={
+              <ProtectedRoute><NotificationsView /></ProtectedRoute>
             } />
             
             <Route path="/dashboard" element={
