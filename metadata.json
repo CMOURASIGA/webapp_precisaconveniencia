@@ -1,0 +1,7 @@
+{
+  "name": "Precisa Conveniência - Engajamento e Inteligência",
+  "description": "Plataforma de fidelidade e análise de dados para mini mercados autônomos, focada em check-ins, recompensas e insights estratégicos.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
