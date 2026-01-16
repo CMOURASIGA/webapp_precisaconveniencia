@@ -3,44 +3,72 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Home, Gift, User, BarChart3, ShoppingBag } from 'lucide-react';
 import { LOGO_URL } from '../constants';
-import { AppRoute } from '../types';
+import { useAuth } from '../context/AuthContext';
 
 export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const location = useLocation();
+  const { user } = useAuth();
   const isDashboard = location.pathname === '/dashboard';
+  const isAuth = location.pathname === '/auth';
+  const isAdmin = user?.role === 'admin';
 
   return (
     <div className="min-h-screen bg-[#FFFFFF] flex flex-col max-w-md mx-auto relative border-x border-gray-50 shadow-xl">
       {/* Header */}
-      <header className="sticky top-0 z-40 bg-white/80 backdrop-blur-md px-6 py-4 flex items-center justify-between border-b border-gray-100">
-        <div className="flex items-center gap-2">
-          <img src={LOGO_URL} alt="Precisa" className="h-8 object-contain" />
-          <span className="font-brand font-bold text-sm tracking-tight leading-none text-black">
-            Precisa <br />
-            <span className="text-[10px] uppercase opacity-60 font-black">Conveniência</span>
-          </span>
-        </div>
-        <Link 
-          to={isDashboard ? '/' : '/dashboard'} 
-          className="text-[10px] font-bold uppercase tracking-wider bg-gray-100 px-3 py-1 rounded-full text-gray-600 flex items-center gap-1"
-        >
-          <BarChart3 size={12} />
-          {isDashboard ? 'Área Usuário' : 'Gestão'}
-        </Link>
-      </header>
+      {!isAuth && (
+        <header className="sticky top-0 z-40 bg-white/80 backdrop-blur-md px-6 py-4 flex items-center justify-between border-b border-gray-100">
+          <div className="flex items-center gap-2">
+            <img src={LOGO_URL} alt="Precisa" className="h-8 object-contain" />
+            <span className="font-brand font-bold text-sm tracking-tight leading-none text-black">
+              Precisa <br />
+              <span className="text-[10px] uppercase opacity-60 font-black">Conveniência</span>
+            </span>
+          </div>
+          
+          {/* Somente exibe link de Gestão se for ADMIN e não estiver no dashboard */}
+          {isAdmin && !isDashboard && (
+            <Link 
+              to="/dashboard" 
+              className="text-[10px] font-bold uppercase tracking-wider bg-black text-white px-3 py-1.5 rounded-full flex items-center gap-1 shadow-md shadow-black/10"
+            >
+              <BarChart3 size={12} />
+              Gestão
+            </Link>
+          )}
+
+          {/* Se estiver no dashboard, link para Perfil (Logout) */}
+          {isAdmin && isDashboard && (
+            <Link 
+              to="/perfil" 
+              className="text-[10px] font-bold uppercase tracking-wider bg-gray-100 text-gray-600 px-3 py-1.5 rounded-full flex items-center gap-1"
+            >
+              <User size={12} />
+              Sair
+            </Link>
+          )}
+        </header>
+      )}
 
       {/* Main Content */}
-      <main className="flex-1 pb-24 p-6">
+      <main className={`flex-1 ${isAuth ? 'p-6 flex flex-col' : 'pb-24 p-6'}`}>
         {children}
       </main>
 
-      {/* Bottom Nav (User Area) */}
-      {!isDashboard && (
+      {/* Bottom Nav - Somente para usuários perfil 'user' */}
+      {!isAuth && user && !isAdmin && (
         <nav className="fixed bottom-0 w-full max-w-md bg-white border-t border-gray-100 px-6 py-3 flex justify-around items-center shadow-[0_-4px_10px_rgba(0,0,0,0.03)] z-40">
           <NavItem to="/" active={location.pathname === '/'} icon={<Home size={22} />} label="Início" />
           <NavItem to="/produtos" active={location.pathname === '/produtos'} icon={<ShoppingBag size={22} />} label="Produtos" />
           <NavItem to="/campanhas" active={location.pathname === '/campanhas'} icon={<Gift size={22} />} label="Campanhas" />
           <NavItem to="/perfil" active={location.pathname === '/perfil'} icon={<User size={22} />} label="Perfil" />
+        </nav>
+      )}
+
+      {/* Navegação Simplificada para Admin no Perfil */}
+      {!isAuth && isAdmin && location.pathname === '/perfil' && (
+        <nav className="fixed bottom-0 w-full max-w-md bg-white border-t border-gray-100 px-6 py-3 flex justify-around items-center z-40">
+          <NavItem to="/dashboard" active={false} icon={<BarChart3 size={22} />} label="Dashboard" />
+          <NavItem to="/perfil" active={true} icon={<User size={22} />} label="Perfil" />
         </nav>
       )}
     </div>

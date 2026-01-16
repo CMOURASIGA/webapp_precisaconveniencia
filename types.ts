@@ -2,8 +2,18 @@
 export interface User {
   id: string;
   name: string;
+  email: string;
   points: number;
   checkInCount: number;
+  role: 'user' | 'admin';
+}
+
+export interface AuthContextType {
+  user: User | null;
+  login: (email: string, password: string) => Promise<void>;
+  register: (name: string, email: string, password: string) => Promise<void>;
+  logout: () => void;
+  loading: boolean;
 }
 
 export interface Campaign {
@@ -45,5 +55,6 @@ export enum AppRoute {
   CAMPAIGNS = '/campanhas',
   PRODUCTS = '/produtos',
   PROFILE = '/perfil',
-  DASHBOARD = '/dashboard'
+  DASHBOARD = '/dashboard',
+  AUTH = '/auth'
 }

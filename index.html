@@ -17,9 +17,15 @@
         .font-brand {
             font-family: 'Montserrat', sans-serif;
         }
-        /* Garantir que o root ocupe a tela toda para evitar flashes brancos */
         #root {
             min-height: 100vh;
+        }
+        @keyframes progress-fast {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+        .animate-progress-fast {
+            animation: progress-fast 2s linear forwards;
         }
     </style>
 <script type="importmap">
@@ -39,7 +45,6 @@
 </head>
 <body class="bg-[#FFFFFF] text-[#000000]">
     <div id="root"></div>
-    <!-- O script abaixo carrega o ponto de entrada do React -->
     <script type="module" src="index.tsx"></script>
 </body>
 </html>
