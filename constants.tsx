@@ -49,7 +49,7 @@ export const MOCK_PRODUCTS = [
     name: 'Refrigerante Lata 350ml', 
     price: 5.50, 
     category: 'bebidas', 
-    imageUrl: 'https://images.unsplash.com/photo-1554866585-cd94860890b7?auto=format&fit=crop&q=80&w=400', 
+    imageUrl: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&q=80&w=600', 
     inStock: true 
   },
   { 
@@ -57,7 +57,7 @@ export const MOCK_PRODUCTS = [
     name: 'Batata Chips Original', 
     price: 14.90, 
     category: 'snacks', 
-    imageUrl: 'https://images.unsplash.com/photo-1613919113640-25732ec5e61f?auto=format&fit=crop&q=80&w=400', 
+    imageUrl: 'https://images.unsplash.com/photo-1566478431375-707a62544e58?auto=format&fit=crop&q=80&w=600', 
     inStock: true 
   },
   { 
@@ -65,7 +65,7 @@ export const MOCK_PRODUCTS = [
     name: 'Cerveja Long Neck', 
     price: 8.50, 
     category: 'bebidas', 
-    imageUrl: 'https://images.unsplash.com/photo-1623945227418-2d3f0f64472f?auto=format&fit=crop&q=80&w=400', 
+    imageUrl: 'https://images.unsplash.com/photo-1535958636474-b021ee887b13?auto=format&fit=crop&q=80&w=600', 
     inStock: true 
   },
   { 
@@ -73,7 +73,7 @@ export const MOCK_PRODUCTS = [
     name: 'Papel Higiênico (4 rolos)', 
     price: 12.00, 
     category: 'essenciais', 
-    imageUrl: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=400', 
+    imageUrl: 'https://images.unsplash.com/photo-1584622781564-1d9876a13d00?auto=format&fit=crop&q=80&w=600', 
     inStock: true 
   },
   { 
@@ -81,7 +81,7 @@ export const MOCK_PRODUCTS = [
     name: 'Chocolate ao Leite 100g', 
     price: 18.00, 
     category: 'snacks', 
-    imageUrl: 'https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&q=80&w=400', 
+    imageUrl: 'https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&q=80&w=600', 
     inStock: true 
   },
   { 
@@ -89,7 +89,7 @@ export const MOCK_PRODUCTS = [
     name: 'Sorvete Premium 473ml', 
     price: 39.90, 
     category: 'congelados', 
-    imageUrl: 'https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?auto=format&fit=crop&q=80&w=400', 
+    imageUrl: 'https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?auto=format&fit=crop&q=80&w=600', 
     inStock: false 
   },
   { 
@@ -97,7 +97,7 @@ export const MOCK_PRODUCTS = [
     name: 'Energético 473ml', 
     price: 10.90, 
     category: 'bebidas', 
-    imageUrl: 'https://images.unsplash.com/photo-1543253687-c931c8e01820?auto=format&fit=crop&q=80&w=400', 
+    imageUrl: 'https://images.unsplash.com/photo-1622543925917-763c34d1538c?auto=format&fit=crop&q=80&w=600', 
     inStock: true 
   },
   { 
@@ -105,7 +105,7 @@ export const MOCK_PRODUCTS = [
     name: 'Sabonete Hidratante', 
     price: 4.50, 
     category: 'essenciais', 
-    imageUrl: 'https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?auto=format&fit=crop&q=80&w=400', 
+    imageUrl: 'https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?auto=format&fit=crop&q=80&w=600', 
     inStock: true 
   },
 ];
